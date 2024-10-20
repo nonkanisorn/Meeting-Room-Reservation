@@ -4,17 +4,19 @@ const mysql = require("mysql");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const auth = require("./middleware/auth");
+const morgan = require("morgan");
 const fs = require("fs");
 const app = express();
 const port = 5056;
 app.use(cors());
+app.use(morgan("dev"));
 app.use(express.json());
 //Connect DATABASE
 var db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "LoginJWTDB",
+  database: "MeetingRoomReservationDB",
 });
 db.connect(function (err) {
   if (err) {
@@ -71,7 +73,7 @@ app.post("/login", async (req, res) => {
       [ID],
       async (err, result) => {
         if (err) {
-          res.send(err);
+          res.status(500).send(err);
         }
         //เช็คID ใน DATABASE
         if (result.length === 0) {

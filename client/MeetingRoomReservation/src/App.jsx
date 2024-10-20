@@ -10,7 +10,8 @@ import Welcomepage from "./component/Welcomepage";
 import Adminpage from "./component/Adminpage";
 import AdminRoute from "./routes/AdminRoute";
 import UserRoute from "./routes/UserRoute";
-
+import Index from "./component/user/Index";
+import Detailrent from "./component/user/Detailrent";
 function App() {
   const [count, setCount] = useState(0);
 
@@ -38,6 +39,8 @@ function App() {
             </UserRoute>
           }
         ></Route>
+        <Route path="/index" element={<Index />}></Route>
+        <Route path="/detailrent/:room_id" element={<Detailrent />}></Route>
       </Routes>
     </>
   );
